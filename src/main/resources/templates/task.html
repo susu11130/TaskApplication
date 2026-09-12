@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--/* CSS */-->
+	<link rel="stylesheet" th:href="@{/css/task.css}">
+	<title>タスク管理アプリケーション</title>
+</head>
+
+<body>
+
+	<main class="task-container">
+		<div class="page-header">
+			<h2>タスク管理アプリケーション</h2>
+
+			<form th:action="@{/task/new}" method="post">
+				<button type="submit" class="register-button">新規登録</button>
+		</div>
+
+		<table>
+			<thead>
+				<tr>
+					<th class="colspan-id">ID</th>
+					<th class="colspan-title">タイトル</th>
+					<th class="colspan-category">カテゴリ</th>
+					<th class="colspan-dueDate">期限</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="task :${tasks}">
+					<td th:text="${task.id}">ID</td>
+					<td th:text="${task.title}">タイトル</td>
+					<td th:text="${task.category}">カテゴリー</td>
+					<td th:text="${task.dueDate}">期限</td>
+				</tr>
+			</tbody>
+		</table>
+		</form>
+	</main>
+
+</body>
+
+</html>

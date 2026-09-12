@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+table {
+	width: 1000px;
+	border-collapse: collapse;
+	/* tableの隙間を無くす */
+}
+
+.task-container {
+	width: 1000px;
+	max-width: 100%;
+}
+
+.page-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	/*gap: 16px;	見出しとボタンの感覚*/
+}
+
+th,
+td {
+	border: 1px solid #333;
+	/* 罫線 */
+	padding: 8px 12px;
+}
+
+th {
+	background-color: beige;
+}
+
+.register-button {
+	padding: 1opx 20px;
+	font-size: 20px;
+}
+
+.colspan-id {
+	width: 100px;
+}
+
+.colspan-title {
+	width: 400px;
+}
+
+.colspan-category,
+.colspan-dueDate {
+	width: 200px
+}
+
+.empty-message {
+	text-align: center;
+}
