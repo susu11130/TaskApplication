@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--/* タスク登録モーダル */-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+  <div class="modal fade" id="register-modal" tabindex="-1" aria-labelledby="register-modal-title" aria-hidden="true"
+    data-bs-backdrop="static" th:fragment="registerModal" th:attr="data-error=${openRegisterModal}">
+    <div class="modal-dialog modal-dialog-centered">
+      <form class="modal-content" id="register-form" th:object="${taskForm}">
+
+        <div class="modal-header">
+          <h4 class="modal-title" id="register-modal-title">タスク新規登録</h4>
+
+          <button type="button" id="close-register-modal" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+        </div>
+
+        <div class="modal-body modal-fields">
+          <label>
+            <span>ID <span class="required-mark" aria-hidden="true">※</span></span>
+            <input type="text" th:field="*{id}" id="id-modal" class="id-input form-control" th:errorclass="input-error"
+              maxlength="3" placeholder="例：123">
+            <span class="text-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></span>
+          </label>
+          <label>
+            <span>タイトル <span class="required-mark" aria-hidden="true">※</span></span>
+            <input type="text" th:field="*{title}" class="form-control" th:errorclass="input-error" maxlength="50"
+              placeholder="タスクのタイトルを入力">
+            <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+          </label>
+
+          <label>カテゴリ
+            <select th:field="*{category}" class="form-select" th:errorclass="input-error">
+              <option value="">選択してください</option>
+              <option value="Java">Java</option>
+              <option value="Spring">Spring</option>
+              <option value="その他">その他</option>
+            </select>
+            <span class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
+          </label>
+
+          <label>期限
+            <input type="date" id="dueDate" class="dueDate-input form-control" th:field="*{dueDate}"
+              th:errorclass="input-error">
+            <span class="text-danger" th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}"></span>
+          </label>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="cancel-register-modal" class="btn bg-body text-body border" data-bs-dismiss="modal">キャンセル</button>
+          <button type="button" id="register" class="btn theme-submit-button">登録</button>
+        </div>
+      </form>
+
+      <script th:src="@{/js/register_modal.js}" defer></script>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -5,25 +5,70 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.mapper.TaskMapper;
 import com.example.model.Task;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Repository
 public class TaskRepository {
 
+	private List<Task> tasks = new ArrayList<>();
+
+	private final TaskMapper taskMapper;
+
 	/**
-	 * 登録_画面表示用Listに追加する
+	 * 登録
 	 * 
 	 * @param form
 	 * @return
 	 */
-	public List<Task> register(Task form) {
+	public void register(Task form) {
 
-		List<Task> tasks = new ArrayList<>();
+		taskMapper.insert(form);
+	}
 
-		tasks.add(form);
+	/**
+	 * タスク一覧を取得する
+	 * 
+	 * @return タスク一覧
+	 */
+	public List<Task> findAll() {
+		return taskMapper.selectAll();
+	}
 
-		return tasks;
-
+	/**
+	 * IDから該当のタスクを取得
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Task findById(Integer id) {
+		return tasks.stream()
+		    .filter(i -> i.getId().equals(id))
+		    .findFirst()
+		    .orElse(null);
+	}
+	
+	/**
+	 * 更新
+	 * 
+	 * @param form
+	 * @return　更新件数
+	 */
+	public int update(Task form) {
+		return taskMapper.update(form);
+	}
+	
+	/**
+	 * 削除
+	 * 
+	 * @param form
+	 * @return 削除件数
+	 */
+	public int delete(Task form) {
+		return taskMapper.deleteTask(form);
 	}
 
 }
