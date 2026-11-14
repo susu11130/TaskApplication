@@ -61,6 +61,7 @@ public class TaskService {
 	 * @param form フォーム
 	 * @return 更新対象のタスク
 	 */
+	@Transactional
 	public Task updateProcess(Task form) {
 
 		int count = taskRepository.update(form);
@@ -79,6 +80,7 @@ public class TaskService {
 	 * @param form フォーム
 	 * @return 削除対象のタスク
 	 */
+	@Transactional
 	public Task deleteProcess(Task form) {
 		int count = taskRepository.delete(form);
 		// 削除件数が1件以外の場合はエラー
