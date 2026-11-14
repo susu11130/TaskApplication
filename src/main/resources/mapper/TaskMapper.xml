@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.TaskMapper">
+
+  <select id="selectByIds" resultType="com.example.model.Task">
+    select
+      id
+      , title
+      , category
+      , duedate 
+    from
+      tasks
+    where
+      id in
+      <foreach collection="ids" item="id" open="(" separator="," close=")">
+        #{id}
+      </foreach>
+  </select>
+  
+  <select id="selectAll" resultType="com.example.model.Task">
+    select
+      id
+      ,title
+      ,category
+      ,duedate
+      ,version
+    from
+      tasks
+    order by
+      id
+  </select>
+
+  <insert id="insert" parameterType="com.example.model.Task">
+  <bind name="version" value="1"/>
+    insert into tasks (
+      id,
+      title,
+      category,
+      duedate,
+      adddate,
+      upddate,
+      version
+    )
+    values (
+      #{id},
+      #{title},
+      #{category},
+      #{dueDate},
+      current_timestamp,
+      current_timestamp,
+      #{version}
+    )
+  </insert>
+
+  <update id="update" parameterType="com.example.model.Task">
+		update tasks
+		set
+		  title = #{title}
+		  , category = #{category}
+		  , duedate = #{dueDate}
+		  , upddate = current_timestamp
+		  , version = version + 1
+		where
+		  id = #{id}
+		  and version = #{version}
+  </update>
+  
+  <delete id="deleteTask" parameterType="com.example.model.Task">
+    delete
+    from
+      tasks
+    where
+      id = #{id}
+      and version = #{version}
+  </delete>
+
+</mapper>

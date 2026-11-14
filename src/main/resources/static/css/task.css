@@ -1,52 +1,149 @@
 @charset "UTF-8";
 
+/*BootStrap適用で余白が無くなるので追加*/
+body {
+  padding: 24px;
+  /* 明暗設定はtheme.jsが切り替え、色の実値はBootstrapが用意する。 */
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  color-scheme: light;
+}
+
+/* 日付ピッカーなど、ブラウザ標準の部品にも暗いテーマを伝える。 */
+[data-bs-theme="dark"] {
+  color-scheme: dark;
+}
+
+[data-bs-theme="dark"] body {
+  color-scheme: dark;
+}
+
 table {
-	width: 1000px;
-	border-collapse: collapse;
-	/* tableの隙間を無くす */
+  width: 1000px;
+  border-collapse: collapse;
+  /* tableの隙間を無くす */
 }
 
 .task-container {
-	width: 1000px;
-	max-width: 100%;
+  width: 1000px;
+  max-width: 100%;
 }
 
 .page-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	/*gap: 16px;	見出しとボタンの感覚*/
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /*gap: 16px;	見出しとボタンの感覚*/
 }
 
 th,
 td {
-	border: 1px solid #333;
-	/* 罫線 */
-	padding: 8px 12px;
+  border: 1px solid var(--bs-border-color);
+  /* 罫線 */
+  padding: 8px 12px;
 }
 
 th {
-	background-color: beige;
+  /* 一覧の見出しも、テーマに合わせた背景色にする。 */
+  background-color: var(--bs-tertiary-bg);
 }
 
+/* 新規登録ボタン*/
 .register-button {
-	padding: 1opx 20px;
-	font-size: 20px;
+  border: none;
+  background: transparent;
+  color: var(--bs-link-color);
+  font-size: 20px;
+}
+
+.edit-button {
+  font-size: 20px;
 }
 
 .colspan-id {
-	width: 100px;
+  width: 100px;
 }
 
 .colspan-title {
-	width: 400px;
+  width: 400px;
 }
 
 .colspan-category,
 .colspan-dueDate {
-	width: 200px
+  width: 200px
+}
+
+.colspan-edit,
+.colspan-delete {
+  width: 100px;
 }
 
 .empty-message {
-	text-align: center;
+  text-align: center;
+}
+
+td.action-icon {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.action-icon button {
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: inherit;
+  /*ボタンの枠線を無くす*/
+  border: none;
+  /*背景を透明*/
+  background: transparent;
+  /*マウスカーソルを合わせるとポインターの形にする*/
+  cursor: pointer;
+}
+
+.action-icon img {
+  /*	要素の文字サイズを基準にする（tdのfont-size(指定が無ければブラウザの文字サイズを基準にする）*/
+  width: 1em;
+}
+
+/* 必須入力の※ */
+.required-mark {
+  color: var(--bs-danger-text-emphasis);
+}
+
+/* 登録ボタンは、明るいテーマでは暗色、暗いテーマでは明色にする。 */
+.theme-submit-button {
+  --bs-btn-color: var(--bs-body-bg);
+  --bs-btn-bg: var(--bs-emphasis-color);
+  --bs-btn-border-color: var(--bs-emphasis-color);
+  --bs-btn-hover-color: var(--bs-body-bg);
+  --bs-btn-hover-bg: var(--bs-body-color);
+  --bs-btn-hover-border-color: var(--bs-body-color);
+  --bs-btn-active-color: var(--bs-body-bg);
+  --bs-btn-active-bg: var(--bs-body-color);
+  --bs-btn-active-border-color: var(--bs-body-color);
+}
+
+/*　エラーメッセージ表示時に高さがずれないように高さを合わせる　*/
+td.task-title, td.task-category, td.task-dueDate {
+  vertical-align: top;
+}
+
+.toast-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.toast-success {
+  background-color: #198754;
+}
+
+.toast-error {
+  background-color: crimson
 }
