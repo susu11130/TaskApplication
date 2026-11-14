@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Param;
 
 import com.example.model.Task;
 
+/**
+ * タスク情報
+ */
 @Mapper
 public interface TaskMapper {
 
@@ -28,23 +31,24 @@ public interface TaskMapper {
 	/**
 	 * 登録
 	 * 
-	 * @param task
+	 * @param task 登録対象のタスク
+	 * @return 登録件数
 	 */
-	public void insert(Task task);
+	public int insert(Task task);
 
 	/**
 	 * 更新
 	 * 
-	 * @param task
-	 * @return
+	 * @param task 更新対象のタスク
+	 * @return 更新件数
 	 */
 	public int update(Task task);
 
 	/**
 	 * 削除
 	 * 
-	 * @param task
-	 * @return
+	 * @param task 削除対象のタスク
+	 * @return 削除件数
 	 */
 	public int deleteTask(Task task);
 }
