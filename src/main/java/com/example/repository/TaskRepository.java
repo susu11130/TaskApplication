@@ -10,6 +10,9 @@ import com.example.model.Task;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * タスク管理アプリケーション
+ */
 @RequiredArgsConstructor
 @Repository
 public class TaskRepository {
@@ -22,7 +25,6 @@ public class TaskRepository {
 	 * 登録
 	 * 
 	 * @param form
-	 * @return
 	 */
 	public void register(Task form) {
 
@@ -41,8 +43,8 @@ public class TaskRepository {
 	/**
 	 * IDから該当のタスクを取得
 	 * 
-	 * @param id
-	 * @return
+	 * @param id 検索対象のID
+	 * @return 検索結果タスク
 	 */
 	public Task findById(Integer id) {
 		return tasks.stream()
@@ -50,21 +52,21 @@ public class TaskRepository {
 		    .findFirst()
 		    .orElse(null);
 	}
-	
+
 	/**
 	 * 更新
 	 * 
-	 * @param form
-	 * @return　更新件数
+	 * @param form フォーム
+	 * @return 更新件数
 	 */
 	public int update(Task form) {
 		return taskMapper.update(form);
 	}
-	
+
 	/**
 	 * 削除
 	 * 
-	 * @param form
+	 * @param form フォーム
 	 * @return 削除件数
 	 */
 	public int delete(Task form) {
